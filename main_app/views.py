@@ -9,6 +9,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import boto3
 import uuid
+# ///////////// Cloudinary Stuff ///////////
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+# //////////////// USING .env BY TYPING my_key = os.environ['SECRET_KEY']
+import os
+
 # //////////////////////////////////////////////////////////////////
 
 
