@@ -43,18 +43,20 @@ def about(request):
 
 class PostList(LoginRequiredMixin, ListView):
     model = Post
+    context_object_name = 'post_list'
 
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
-    fields = '__all__'
+    fields = ['title', 'content', 'photoUrl', 'videoUrl']
+    _user = 'test'
     success_url = '/posts/'
-
 
 class PostDetail(LoginRequiredMixin, DetailView):
     model = Post
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
+    fields = ['title', 'content', 'photoUrl', 'videoUrl']
     success_url = '/posts/'
 
 class PostDelete(LoginRequiredMixin, DeleteView):

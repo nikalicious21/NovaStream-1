@@ -9,6 +9,7 @@
     {% csrf_token %}
     <table>
         {{form.as_table}}
+        <input type="hidden" value="{{user.name}}" name="author">
     </table>
     <input type="submit" class="btn green" value="Submit">
 </form>

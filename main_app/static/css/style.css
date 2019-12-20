@@ -3,11 +3,11 @@
 }
 
 nav {
-    background-color: transparent;
+    background-color: black;
 }
 
 ul a li, ul li a {
-    color: black;
+    color: white;
 }
 
 .nav-wrapper{
@@ -16,4 +16,19 @@ ul a li, ul li a {
 .nav-items li {
     font-size: large;
     padding: 0 5px;
+}
+
+#id_content {
+    width: 100%;
+    height: 60vh;
+}
+
+form {
+    margin-bottom: 50px;
+}
+
+.post-title-photo{
+    width: 50%;
+    height: 1%;
+    text-align: center;
 }

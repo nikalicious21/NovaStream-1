@@ -11,9 +11,9 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    content = models.TextField(
-        blank=False
-    )
+    content = models.TextField()
     photoUrl = models.CharField(max_length=100)
+    videoUrl = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
-    date_published = models.DateTimeField(auto_now_add=True)
+    # sources = 
+    datePublished = models.DateTimeField(auto_now_add=True)
