@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-# from .models import 
+from .models import Post
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -40,3 +40,23 @@ def home_index(request):
 
 def about(request):
     return render(request, 'about.html')
+
+class PostList(LoginRequiredMixin, ListView):
+    model = Post
+
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = '__all__'
+    success_url = '/posts/'
+
+
+class PostDetail(LoginRequiredMixin, DetailView):
+    model = Post
+
+class PostUpdate(LoginRequiredMixin, UpdateView):
+    model = Post
+    success_url = '/posts/'
+
+class PostDelete(LoginRequiredMixin, DeleteView):
+    model = Post
+    success_url = '/posts/'
