@@ -41,6 +41,9 @@ def home_index(request):
 def about(request):
     return render(request, 'about.html')
 
+def profile(request):
+    pass
+
 class PostList(LoginRequiredMixin, ListView):
     model = Post
     context_object_name = 'post_list'
