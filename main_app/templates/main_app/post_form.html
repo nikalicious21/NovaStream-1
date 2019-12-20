@@ -1,16 +1,43 @@
-{% extends 'base.html' %}
-{% block content %}
-{% if object %}
-    <h1>Edit<span class="blue-text">{{object.name}}</span></h1>
-{% else %}
-    <h1>Add Post</h1>
-{% endif %}
+{% extends 'base.html' %} {% block content %} {% if object %}
+<h1>Edit<span class="blue-text">{{object.name}}</span></h1>
 <form action="" method="POST">
     {% csrf_token %}
     <table>
-        {{form.as_table}}
-        <input type="hidden" value="{{user.name}}" name="author">
+        <div class="row">
+            <div class="col s6">
+                <input id="id_title" type="text" name="title" placeholder="Title" value="{{object.title}}">
+                <input id="id_author" type="hidden" value="{{user}}" name="author" placeholder="Author">
+            </div>
+            <div class="col s6">
+                <input type="hidden" name="datePublished" value="{{time_now|date}} - {{ time_now|time }}">
+            </div>
+            <textArea id="id_content" name="content" placeholder="Content">
+                {{object.content}}
+            </textarea>
+            <p><b>Image URL:</b></p><input id="id_imageUrl" type="text" name="imageUrl" placeholder="Image Url" value="{{object.imageUrl}}">
+            <p><b>Video URL:</b></p><input id="id_videoUrl" type="text" name="videoUrl" placeholder="Video Url" value="{{object.videoUrl}}">
+    </table>
+    <input type="submit" class="btn green" value="Submit">
+    <a href="{% url 'post_detail' object.id %}"><input type="button" class="btn grey" value="Cancel"></a>
+</form>
+{% else %}
+<h1>Add Post</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        <div class="row">
+            <div class="col s6">
+                <input id="id_title" type="text" name="title" placeholder="Title">
+                <input id="id_author" type="text" value="{{user}}" name="author" placeholder="Author">
+            </div>
+            <div class="col s6">
+                <input type="hidden" name="datePublished" value="{{time_now|date}} - {{ time_now|time }}">
+                <p style="float: right;">{{time_now|date}} - {{ time_now|time }}</p>
+            </div>
+            <textArea id="id_content" name="content" placeholder="Content"></textarea>
+            <p><b>Image URL:</b></p><input id="id_imageUrl" type="text" value="n/a" name="imageUrl" placeholder="Image Url">
+            <p><b>Video URL:</b></p><input id="id_videoUrl" type="text" value="n/a" name="videoUrl" placeholder="Video Url">
     </table>
     <input type="submit" class="btn green" value="Submit">
 </form>
-{% endblock %}
+{% endif %} {% endblock %}
