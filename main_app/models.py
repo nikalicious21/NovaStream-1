@@ -14,6 +14,6 @@ class Post(models.Model):
     content = models.TextField()
     photoUrl = models.CharField(max_length=100)
     videoUrl = models.CharField(max_length=100)
-    author = models.CharField(max_length=100)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     # sources = 
     datePublished = models.DateTimeField(auto_now_add=True)
