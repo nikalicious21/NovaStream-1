@@ -6,6 +6,8 @@
         <div class="row">
             <div class="col s6">
                 <input id="id_title" type="text" name="title" placeholder="Title" value="{{object.title}}">
+                <p><b>Image URL:</b></p><input id="id_imageUrl" type="text" name="imageUrl" placeholder="Image Url" value="{{object.imageUrl}}">
+                <p><b>Video URL:</b></p><input id="id_videoUrl" type="text" name="videoUrl" placeholder="Video Url" value="{{object.videoUrl}}">
                 <input id="id_author" type="hidden" value="{{user}}" name="author" placeholder="Author">
             </div>
             <div class="col s6">
@@ -14,8 +16,6 @@
             <textArea id="id_content" name="content" placeholder="Content">
                 {{object.content}}
             </textarea>
-            <p><b>Image URL:</b></p><input id="id_imageUrl" type="text" name="imageUrl" placeholder="Image Url" value="{{object.imageUrl}}">
-            <p><b>Video URL:</b></p><input id="id_videoUrl" type="text" name="videoUrl" placeholder="Video Url" value="{{object.videoUrl}}">
     </table>
     <input type="submit" class="btn green" value="Submit">
     <a href="{% url 'post_detail' object.id %}"><input type="button" class="btn grey" value="Cancel"></a>
@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col s6">
                 <input id="id_title" type="text" name="title" placeholder="Title">
-                <input id="id_author" type="text" value="{{user}}" name="author" placeholder="Author">
+                <input id="id_author" type="hidden" value="{{user}}" name="author" placeholder="Author">
             </div>
             <div class="col s6">
                 <input type="hidden" name="datePublished" value="{{time_now|date}} - {{ time_now|time }}">

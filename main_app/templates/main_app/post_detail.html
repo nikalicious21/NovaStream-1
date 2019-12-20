@@ -6,6 +6,6 @@
     <i>{{object.datePublished }}</i>
     <h6><b>{{post.author}}</b></h6>
     <div class="post-title-photo" style="background-image: url({{post.imageUrl}});"></div>
-    {{object.content}}
+    <textarea id="id_content_readonly">{{object.content}}</textarea>
 </div>
 {% endif %} {% endblock %}
