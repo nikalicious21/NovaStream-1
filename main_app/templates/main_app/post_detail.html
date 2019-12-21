@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <div class="post-body">
-    {% if object%}
-
+    {% if object%} {% if user == object.author %}
+    <a href="{% url 'post_update' object.id %}"><button class="btn blue" style="float:right; margin-top: 70px;">Edit Post</button></a> {% endif %}
     <h1>{{object.title}}</h1>
     <i>{{object.datePublished }}</i>
     <h6><b>{{post.author}}</b></h6>

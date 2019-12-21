@@ -47,7 +47,7 @@ form {
 }
 
 #post_image {
-    height: 100px;
+    height: 150px;
     object-fit: fill;
     background-position: center;
     background-size: cover;
