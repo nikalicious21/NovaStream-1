@@ -42,9 +42,15 @@ def home_index(request):
 
 def about(request):
     return render(request, 'about.html')
+<<<<<<< HEAD
+
+@login_required
+=======
     
+>>>>>>> 66c4aaf8e06751dc0a4c32a4e75efcf81023e8f9
 def profile(request):
-    pass
+    posts = Post.objects.filter(author=request.user)
+    return render(request, 'profile.html', {'posts': posts})
 
 class PostList(LoginRequiredMixin, ListView):
     model = Post
