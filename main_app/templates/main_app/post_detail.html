@@ -4,8 +4,8 @@
 
     <h1>{{object.title}}</h1>
     <i>{{object.datePublished }}</i>
-    <h6><b>{{object.author}}</b></h6>
-    <img class="post-title-photo" src="{{object.photoUrl}})"> {% if object.content %}
-    <div class="label">{{object.content}}</div>
+    <h6><b>{{post.author}}</b></h6>
+    <div class="post-title-photo" style="background-image: url({{post.imageUrl}});"></div>
+    <p>{{object.content|linebreaks}}</p>
 </div>
-{% endif %} {% endif %} {% endblock %}
+{% endif %} {% endblock %}
