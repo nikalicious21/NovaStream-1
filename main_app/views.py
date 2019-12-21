@@ -26,7 +26,7 @@ def signup(request):
     error_msg = ''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             user = form.save()
             login(request, user)
             return redirect('index')
@@ -52,11 +52,12 @@ class PostList(LoginRequiredMixin, ListView):
 
 class PostCreate(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content', 'imageUrl', 'videoUrl', 'author']
+    fields = ['title', 'content', 'imageUrl', 'videoUrl']
     success_url = '/posts/'
 
-    # def date_now():
-    #     return date.today().strftime('dd/mm/YYYY')
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -69,7 +70,7 @@ class PostDetail(LoginRequiredMixin, DetailView):
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ['title', 'content', 'imageUrl', 'videoUrl', 'author']
+    fields = ['title', 'content', 'imageUrl', 'videoUrl']
     success_url = '/posts/'
 
     def get_context_data(self, **kwargs):

@@ -11,9 +11,9 @@ from django.contrib.auth.models import User
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    content = models.TextField()
-    imageUrl = models.CharField(max_length=100)
-    videoUrl = models.CharField(max_length=100)
-    author = models.CharField(max_length=100)
+    content = models.TextField(blank=True)
+    imageUrl = models.CharField(max_length=100, blank=True)
+    videoUrl = models.CharField(max_length=100, blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     # sources = 
     datePublished = models.DateTimeField(auto_now_add=True)
