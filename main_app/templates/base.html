@@ -17,6 +17,8 @@
         <nav>
             <div class="nav-wrapper">
 
+
+                HEAD
                 <ul>
                     <a href="/" class="left brand-logo">
                         <li>NovaStream</li>
@@ -32,6 +34,23 @@
                     <li><a href="{% url 'login' %}">Sign In</a></li>
                     {% endif %}
                 </ul>
+                <ul>
+                    <a href="/" class="left brand-logo">
+                        <li>NovaStream</li>
+                    </a>
+                </ul>
+                <ul class="right">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'post_list' %}">Posts</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Sign In</a></li>
+                    {% endif %}
+                </ul>
+                >>>>>>> 7d64d2af1b62693df907fcc5798a10c7aa0d21a2
             </div>
         </nav>
     </header>
