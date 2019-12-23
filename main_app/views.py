@@ -15,7 +15,7 @@ from django.utils import timezone
 
 # Make sure to add your bucket name below
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com'
-BUCKET = ''
+BUCKET = 'novastream-posts'
 
 # Create your views here.
 def signup(request):

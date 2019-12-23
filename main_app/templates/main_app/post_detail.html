@@ -1,11 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 <div class="post-body">
-    {% if object%} {% if user == object.author %}
-    <a href="{% url 'post_update' object.id %}"><button class="btn blue" style="float:right; margin-top: 70px;">Edit Post</button></a> {% endif %}
+    {% if object%}
     <h1>{{object.title}}</h1>
     <i>{{object.datePublished }}</i>
     <h6><b>{{post.author}}</b></h6>
     <div class="post-title-photo" style="background-image: url({{post.imageUrl}});"></div>
+    {% if user == object.author %}
     <p>{{object.content|linebreaks}}</p>
 </div>
-{% endif %} {% endblock %}
+<a href="{% url 'post_delete' object.id %}"><button class="btn red" style="float:right;">Delete Post</button></a>
+<a href="{% url 'post_update' object.id %}"><button class="btn blue" style="float:right;">Edit Post</button></a> {% endif %} {% endif %} {% endblock %}
