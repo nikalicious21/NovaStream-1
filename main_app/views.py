@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Post, Photo, Image
 from django.contrib.auth import login
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,6 +13,7 @@ import uuid
 from datetime import date
 from django.utils import timezone
 
+# Make sure to add your bucket name below
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com'
 BUCKET = ''
 
@@ -57,7 +59,7 @@ def add_image(request, post_id):
             post.imageUrl = url
             post.save()
         except:
-            print('Error while uploading file to S3')
+            print('add_image() Failed. Error while uploading file to S3')
     return redirect('post_detail', post_id)
 
 @login_required
@@ -74,8 +76,16 @@ def add_photo(request, user_id):
             photo = Photo(url=url, user_id=user_id)
             photo.save()
         except:
-            print('Error while uploading file to S3')
+            print('add_photo() Failed. Error while uploading file to S3')
     return redirect('profile')
+
+
+@login_required
+def remove_photo(request, photo_id):
+    user = request.user
+    photo = Photo.objects.get(pk=photo_id)
+    photo.delete()
+    return redirect('/profile/')
 
 class PostList(LoginRequiredMixin, ListView):
     model = Post

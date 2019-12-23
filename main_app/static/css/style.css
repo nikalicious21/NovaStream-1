@@ -47,18 +47,31 @@ form {
 }
 
 #post_image {
-    height: 150px;
+    margin: -25px -10px -25px -35px;
+    height: 250px;
     object-fit: fill;
     background-position: center;
     background-size: cover;
 }
 
-#profile-photo {
-    width: 50px;
-    height: 50px;
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: fill;
+    background-position: center;
+    background-size: cover;
+    border-radius: 75%;
+    border: 1px solid #555;
+    box-shadow: 2px 2px 4px #aaa;
 }
 
-#username {
+.profile-photo:hover {
+    border-color: red;
+    border-width: 3px;
+    box-shadow: 2px 2px 4px transparent;
+}
+
+.capitalized {
     text-transform: capitalize;
 }
 
@@ -96,4 +109,12 @@ form ::placeholder {
 
 .container {
     max-width: 700px;
+}
+
+.card {
+    height: 250px;
+}
+
+.small-card {
+    height: 150px;
 }

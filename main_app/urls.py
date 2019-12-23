@@ -17,4 +17,6 @@ urlpatterns = [
 
     path('posts/<int:user_id>/add_photo/', views.add_photo, name='add_photo'),
     path('posts/<int:post_id>/add_image/', views.add_image, name='add_image'),
+    path('posts/<int:photo_id>/remove_photo/', views.remove_photo, name='remove_photo'),
+    
 ]
