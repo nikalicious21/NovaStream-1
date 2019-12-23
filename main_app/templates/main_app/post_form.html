@@ -2,41 +2,54 @@
 <h1>Edit<span class="blue-text">{{object.name}}</span></h1>
 <form action="" method="POST">
     {% csrf_token %}
-    <table>
-        <div class="row">
-            <div class="col s6">
-                <input id="id_title" type="text" name="title" placeholder="Title" value="{{object.title}}">
-                <p><b>Image URL:</b></p><input id="id_imageUrl" type="text" name="imageUrl" placeholder="Image Url" value="{{object.imageUrl}}">
-                <p><b>Video URL:</b></p><input id="id_videoUrl" type="text" name="videoUrl" placeholder="Video Url" value="{{object.videoUrl}}">
-                <input id="id_author" type="hidden" value="{{user}}" name="author" placeholder="Author">
-            </div>
-            <div class="col s6">
-                <input type="hidden" name="datePublished" value="{{time_now|date}} - {{ time_now|time }}">
-            </div>
-            <textArea id="id_content" name="content" placeholder="Content">
-                {{object.content}}
-            </textarea>
-    </table>
+    <div class="row">
+        <div class="col s6">
+            <input id="id_title" type="text" name="title" placeholder="Title" value="{{object.title}}">
+        </div>
+        <div class="col s6">
+            <input type="text" name="datePublished" value="{{time_now|date}} - {{ time_now|time }}" readonly>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <p><b>Image URL:</b></p><input id="id_imageUrl" type="text" name="imageUrl" placeholder="Image Url" value="{{object.imageUrl}}">
+        </div>
+        <div class="col s6">
+            <p><b>Video URL:</b></p><input id="id_videoUrl" type="text" name="videoUrl" placeholder="Video Url" value="{{object.videoUrl}}">
+        </div>
+    </div>
+    <textArea id="id_content" name="content" placeholder="Content">
+    {{object.content}}
+    </textarea> {% if user == object.author%}
     <input type="submit" class="btn green" value="Submit">
-    <a href="{% url 'post_detail' object.id %}"><input type="button" class="btn grey" value="Cancel"></a>
+    <a href="{% url 'post_detail' object.id %}">
+        <input type="button" class="btn grey" value="Cancel"></a>
+    {% endif %}
 </form>
 {% else %}
 <h1>Add Post</h1>
 <form action="" method="POST">
     {% csrf_token %}
-    <table>
-        <div class="row">
-            <div class="col s6">
-                <input id="id_title" type="text" name="title" placeholder="Title">
-            </div>
-            <div class="col s6">
-                <input type="hidden" name="datePublished" value="{{time_now|date}} - {{ time_now|time }}">
-                <p style="float: right;">{{time_now|date}} - {{ time_now|time }}</p>
-            </div>
-            <textArea id="id_content" name="content" placeholder="Content"></textarea>
-            <p><b>Image URL:</b></p><input id="id_imageUrl" type="text" name="imageUrl" placeholder="Image Url">
-            <p><b>Video URL:</b></p><input id="id_videoUrl" type="text" name="videoUrl" placeholder="Video Url">
-    </table>
+    <div class="row">
+        <div class="col s6">
+            <input id="id_title" type="text" name="title" placeholder="Title">
+        </div>
+        <div class="col s6">
+            <input type="hidden" name="datePublished" value="{{time_now|date}} - {{ time_now|time }}">
+            <p style="float: right;">{{time_now|date}} - {{ time_now|time }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <input id="id_imageUrl" type="text" name="imageUrl" placeholder="Image Url" value="{{object.imageUrl}}">
+        </div>
+        <div class="col s6">
+            <input id="id_videoUrl" type="text" name="videoUrl" placeholder="Video Url" value="{{object.videoUrl}}">
+        </div>
+    </div>
+    <div class="row">
+        <textArea id="id_content" name="content" placeholder="Content"></textarea>
+    </div>
     <input type="submit" class="btn green" value="Submit">
 </form>
 {% endif %} {% endblock %}

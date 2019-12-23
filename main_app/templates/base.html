@@ -1,4 +1,4 @@
-{% load static %} {% load cloudinary %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,24 +16,6 @@
     <header class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
-
-
-                HEAD
-                <ul>
-                    <a href="/" class="left brand-logo">
-                        <li>NovaStream</li>
-                    </a>
-                </ul>
-                <ul class="right">
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'post_list' %}">Posts</a></li>
-                    <li><a href="{% url 'logout' %}">Sign Out</a></li>
-                    {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Sign In</a></li>
-                    {% endif %}
-                </ul>
                 <ul>
                     <a href="/" class="left brand-logo">
                         <li>NovaStream</li>

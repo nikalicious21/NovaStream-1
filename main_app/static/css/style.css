@@ -53,6 +53,15 @@ form {
     background-size: cover;
 }
 
+#profile-photo {
+    width: 50px;
+    height: 50px;
+}
+
+#username {
+    text-transform: capitalize;
+}
+
 h6 i {
     color: #555;
 }
@@ -65,11 +74,13 @@ h6 i {
 
 #id_content {
     padding: 10px;
-    border: 1px solid white;
     height: 500px;
     resize: none;
     overflow: auto;
     margin-top: 50px;
+    border: 1px solid white;
+    border-bottom: 1px solid #aaa;
+    border-top: 1px solid #aaa;
 }
 
 #id_content_readonly {
@@ -77,4 +88,12 @@ h6 i {
     width: 100%;
     resize: none;
     overflow: hidden;
+}
+
+form ::placeholder {
+    color: #555;
+}
+
+.container {
+    max-width: 700px;
 }

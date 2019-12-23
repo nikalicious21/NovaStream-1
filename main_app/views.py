@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Post
+from .models import Post, Photo, Image
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -11,15 +11,9 @@ import boto3
 import uuid
 from datetime import date
 from django.utils import timezone
-# ///////////// Cloudinary Stuff ///////////
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-# //////////////// USING .env BY TYPING my_key = os.environ['SECRET_KEY']
-import os
 
-# //////////////////////////////////////////////////////////////////
-
+S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com'
+BUCKET = ''
 
 # Create your views here.
 def signup(request):
@@ -47,6 +41,41 @@ def about(request):
 def profile(request):
     posts = Post.objects.filter(author=request.user)
     return render(request, 'profile.html', {'posts': posts})
+
+@login_required
+def add_image(request, post_id):
+    img_file = request.FILES.get('img-file', None)
+    if img_file:
+        s3 = boto3.client('s3')
+        file_extension = img_file.name[img_file.name.rfind('.') :]
+        key = uuid.uuid4().hex[:6] + file_extension
+
+        try:
+            s3.upload_fileobj(img_file, BUCKET, key)
+            url = f"{S3_BASE_URL}/{BUCKET}/{key}"
+            post = Post.objects.get(pk=post_id)
+            post.imageUrl = url
+            post.save()
+        except:
+            print('Error while uploading file to S3')
+    return redirect('post_detail', post_id)
+
+@login_required
+def add_photo(request, user_id):
+    img_file = request.FILES.get('img-file', None)
+    if img_file:
+        s3 = boto3.client('s3')
+        file_extension = img_file.name[img_file.name.rfind('.') :]
+        key = uuid.uuid4().hex[:6] + file_extension
+
+        try:
+            s3.upload_fileobj(img_file, BUCKET, key)
+            url = f"{S3_BASE_URL}/{BUCKET}/{key}"
+            photo = Photo(url=url, user_id=user_id)
+            photo.save()
+        except:
+            print('Error while uploading file to S3')
+    return redirect('profile')
 
 class PostList(LoginRequiredMixin, ListView):
     model = Post
