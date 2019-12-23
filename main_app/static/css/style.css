@@ -151,6 +151,10 @@ form ::placeholder {
     border-radius: 30px 0;
 }
 
+.btn {
+    border: 1px solid #333;
+}
+
 .justified form p input {
     color: white;
 }
