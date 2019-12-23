@@ -1,8 +1,6 @@
-{% extends 'base.html' %}
-{% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn green" value="Sign In">
-</form>
+{% extends 'base.html' %} {% block content %}
+<div class="card-panel justified">
+    <form action="" method="POST"> {% csrf_token %} {{ form.as_p }} <input type="submit" class="btn green" value="Sign In">
+    </form>
+</div>
 {% endblock %}
