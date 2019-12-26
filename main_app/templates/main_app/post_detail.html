@@ -2,7 +2,7 @@
 <div class="post-body">
     {% if object%}
     <h1>{{object.title}}</h1>
-    <i>{{object.datePublished }}</i>
+    <i>{{object.datePublished|date }}</i>
     <h6><b>{{post.author}}</b></h6>
     <div class="post-title-photo" style="background-image: url({{post.imageUrl}});"></div>
     <p>{{object.content|linebreaks}}</p>
