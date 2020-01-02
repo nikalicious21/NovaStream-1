@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>About</h1>
-<p>We are NovaStream...</p>
+{% load static %}
+<body style="background-image: url('{% static "images/thinking.png" %}')";></body>
+
+<h1 class="aboutNS">About</h1>
+<p class="aboutNS">We Are NovaStream</p>
+<li class="aboutNS">A platform for users to read articles shared by other wonderful users...</li><br>
+<li class="aboutNS">Where you can share articles you would like others to read...</li><br>       
+<li class="aboutNS">Where you can comment on articles and interact with people around you...</li>
 {% endblock %}

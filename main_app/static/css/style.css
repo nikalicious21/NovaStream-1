@@ -174,3 +174,23 @@ form ::placeholder {
     background-position: center;
     background-size: cover;
 }
+
+h1.aboutNS {
+    color: rgba(231, 201, 33, 0.834);
+    font-size: 80px;
+}
+
+p.aboutNS {
+    color: paleturquoise;
+    font-size: 38px;
+}
+
+li.aboutNS {
+    color: paleturquoise;
+    text-shadow:
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+    font-size: 26px;
+}
